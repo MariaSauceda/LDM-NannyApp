@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.ldmnannyapp.ui.theme.*
 
-class Alimentos : ComponentActivity() {
+class Siestas : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -33,7 +33,7 @@ class Alimentos : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    vistaAlimentos()
+                    vistaSiestas()
                 }
             }
         }
@@ -41,21 +41,21 @@ class Alimentos : ComponentActivity() {
 }
 
 @Composable
-fun vistaAlimentos() {
+fun vistaSiestas() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        topBarAlimentos()
+        topBarSiestas()
         Spacer(Modifier.height(15.dp))
-        titleAlimentos()
+        titleSiestas()
         Spacer(Modifier.height(15.dp))
-        regAlimentos()
+        regSiestas()
         Spacer(Modifier.height(30.dp))
-        estAlimentos()
+        estSiestas()
     }
 
 }
 
 @Composable
-fun topBarAlimentos()
+fun topBarSiestas()
 {
     TopAppBar()
     {
@@ -72,7 +72,7 @@ fun topBarAlimentos()
 }
 
 @Composable
-fun titleAlimentos(modifier: Modifier = Modifier)
+fun titleSiestas(modifier: Modifier = Modifier)
 {
     Card(
         modifier = Modifier
@@ -82,12 +82,12 @@ fun titleAlimentos(modifier: Modifier = Modifier)
     )
     {
         Row(horizontalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.biberon),
+            Image(painter = painterResource(id = R.drawable.sleep),
                 contentDescription = null,
                 modifier = Modifier
                     .paddingFromBaseline(7.dp, 0.dp)
                     .size(35.dp))
-            Text("ALIMENTOS",
+            Text("SIESTAS",
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = ConcertOne,
@@ -99,7 +99,7 @@ fun titleAlimentos(modifier: Modifier = Modifier)
 }
 
 @Composable
-fun regAlimentos() {
+fun regSiestas() {
     Scaffold(Modifier.size(300.dp,165.dp), backgroundColor = amarillito) {
         Column() {
             Spacer(Modifier.height(10.dp))
@@ -207,8 +207,8 @@ fun regAlimentos() {
 }
 
 @Composable
-fun estAlimentos(){
-    Scaffold(Modifier.size(300.dp, 200.dp), backgroundColor = amarillito) {
+fun estSiestas(){
+    Scaffold(Modifier.size(300.dp, 150.dp), backgroundColor = amarillito) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
             Spacer(Modifier.height(15.dp))
             Text("Estadísticas",
@@ -221,36 +221,15 @@ fun estAlimentos(){
                 modifier = Modifier
                     .fillMaxWidth()
             )
-            Spacer(Modifier.height(15.dp))
-            Text("Tu bebé toma fórmula cada X horas",
+            Spacer(Modifier.height(20.dp))
+            Text("Tu bebé duerme X horas al día en promedio.",
                 textAlign = TextAlign.Center,
                 fontFamily = SpaceMono,
                 fontWeight = FontWeight.Normal,
                 fontSize = 13.sp,
             )
             Spacer(Modifier.height(8.dp))
-            Text("Tu bebé come papilla cada X horas",
-                fontFamily = SpaceMono,
-                fontWeight = FontWeight.Normal,
-                fontSize = 13.sp,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(8.dp))
-            Text("Tu bebé toma leche materna cada X horas",
-                fontFamily = SpaceMono,
-                fontWeight = FontWeight.Normal,
-                fontSize = 13.sp,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(8.dp))
-            Text("Tu bebé toma leche X veces al día",
-                fontFamily = SpaceMono,
-                fontWeight = FontWeight.Normal,
-                fontSize = 13.sp,
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(8.dp))
-            Text("Tu bebé come papilla X veces al día",
+            Text("Tu bebé sube dormir de X a Y horas.",
                 fontFamily = SpaceMono,
                 fontWeight = FontWeight.Normal,
                 fontSize = 13.sp,
@@ -263,8 +242,8 @@ fun estAlimentos(){
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewAlmentos() {
+fun PreviewSiestas() {
     LDMNannyAppTheme {
-        vistaAlimentos()
+        vistaSiestas()
     }
 }
