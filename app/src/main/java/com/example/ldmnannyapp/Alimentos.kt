@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -42,27 +43,36 @@ class Alimentos : ComponentActivity() {
 @Composable
 fun vistaAlimentos() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        topBar()
-        Spacer(Modifier.height(5.dp))
-        title()
+        topBarAlimentos()
         Spacer(Modifier.height(15.dp))
-        reg()
+        titleAlimentos()
+        Spacer(Modifier.height(15.dp))
+        regAlimentos()
         Spacer(Modifier.height(30.dp))
-        est()
+        estAlimentos()
     }
 
 }
 
 @Composable
-fun topBar()
+fun topBarAlimentos()
 {
     TopAppBar()
     {
+        Text("Mariana",
+            textAlign = TextAlign.Center,
+            color = letra,
+            fontWeight = FontWeight.Bold,
+            fontFamily = MeriendaOne,
+            fontSize = 30.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
     }
 }
 
 @Composable
-fun title(modifier: Modifier = Modifier)
+fun titleAlimentos(modifier: Modifier = Modifier)
 {
     Card(
         modifier = Modifier
@@ -77,6 +87,7 @@ fun title(modifier: Modifier = Modifier)
                 modifier = Modifier
                     .paddingFromBaseline(7.dp, 0.dp)
                     .size(35.dp))
+            Spacer(Modifier.width(10.dp))
             Text("ALIMENTOS",
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
@@ -89,17 +100,20 @@ fun title(modifier: Modifier = Modifier)
 }
 
 @Composable
-fun reg() {
-    Scaffold(Modifier.size(300.dp,160.dp), backgroundColor = amarillito) {
+fun regAlimentos() {
+    Scaffold(Modifier.size(300.dp,165.dp), backgroundColor = amarillito) {
         Column() {
+            Spacer(Modifier.height(10.dp))
             Text(text = "Últimos registros",
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp,
                 fontFamily = ConcertOne,
+                color = letra,
                 fontWeight = FontWeight.Bold,
+                textDecoration = TextDecoration.Underline,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .paddingFromBaseline(25.dp, 0.dp))
+            )
             Spacer(Modifier.height(10.dp))
             Row() {
                 Text("1",
@@ -194,10 +208,21 @@ fun reg() {
 }
 
 @Composable
-fun est(){
+fun estAlimentos(){
     Scaffold(Modifier.size(300.dp, 200.dp), backgroundColor = amarillito) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            Spacer(Modifier.height(40.dp))
+            Spacer(Modifier.height(15.dp))
+            Text("Estadísticas",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                fontFamily = ConcertOne,
+                color = letra,
+                fontWeight = FontWeight.Bold,
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Spacer(Modifier.height(15.dp))
             Text("Tu bebé toma fórmula cada X horas",
                 textAlign = TextAlign.Center,
                 fontFamily = SpaceMono,
@@ -239,7 +264,7 @@ fun est(){
 
 @Preview(showBackground = true)
 @Composable
-fun Preview() {
+fun PreviewAlimentos() {
     LDMNannyAppTheme {
         vistaAlimentos()
     }
