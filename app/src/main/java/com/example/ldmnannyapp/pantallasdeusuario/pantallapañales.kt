@@ -161,7 +161,12 @@ fun ColorHeces(){
             }
         }
         //Aqui va la otra lista 2
-        Text("_______________________________________________")
+        Text("______________________________________________",
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+                .fillMaxHeight()
+                .padding(start = 5.dp, end = 5.dp)
+        )
         Text(
             "Consistencia de las heces fecales",
             fontSize = 18.sp,
@@ -213,10 +218,11 @@ fun BotonGuardar(){
     }
 }
 
+//No se esta usando
 @Composable
 fun Separador(){
     Column(){
-        Text("----------------------------------------")
+        Text("-------------------------------------")
     }
 }
 
