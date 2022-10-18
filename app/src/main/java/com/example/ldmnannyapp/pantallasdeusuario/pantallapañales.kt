@@ -65,7 +65,7 @@ fun vistaCambioPanal() {
         Spacer(Modifier.padding(5.dp))
         ColorHeces()
         Spacer(Modifier.padding(5.dp))
-
+        BotonGuardar()
     }
 
 }
@@ -100,8 +100,7 @@ fun title(modifier: Modifier = Modifier)
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = modifier.paddingFromBaseline(30.dp),
-
-                )
+            )
         }
     }
 }
@@ -133,6 +132,7 @@ fun ColorHeces(){
             "Color de las heces fecales",
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
+            modifier = Modifier.padding(8.dp)
         )
         Column {
             radioOptions.forEach { text ->
@@ -161,10 +161,12 @@ fun ColorHeces(){
             }
         }
         //Aqui va la otra lista 2
+        Text("_______________________________________________")
         Text(
-            "Color de las heces fecales",
+            "Consistencia de las heces fecales",
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
+            modifier = Modifier.padding(8.dp)
         )
         Column {
             radioOptions2.forEach { text ->
@@ -192,6 +194,29 @@ fun ColorHeces(){
                 }
             }
         }
+    }
+}
+
+@Composable
+fun BotonGuardar(){
+    Row(horizontalArrangement = Arrangement.End,
+        modifier = Modifier.fillMaxWidth().fillMaxHeight()
+    //.padding(end = 15.dp, top = 5.dp, bottom = 5.dp, start = 15.dp)
+    ){
+        Button(
+            modifier = Modifier.padding(end = 35.dp, top = 10.dp, bottom = 10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Magenta),
+            onClick = { /*TODO*/ }) {
+            Text(text = "Guardar")
+        }
+
+    }
+}
+
+@Composable
+fun Separador(){
+    Column(){
+        Text("----------------------------------------")
     }
 }
 
