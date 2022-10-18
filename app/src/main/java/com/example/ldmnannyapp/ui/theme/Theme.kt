@@ -20,7 +20,7 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple700,
     secondary = Teal200,
     surface = fondo,
-    //onSurface = letra
+    //onSurface = letra,
 
     /* Other default colors to override
     background = Color.White,

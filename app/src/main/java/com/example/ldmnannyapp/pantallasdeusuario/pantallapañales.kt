@@ -110,7 +110,7 @@ fun title2(){
     Text(
         text = "Detalles importantes",
         textAlign = TextAlign.Center,
-        fontSize = 24.sp
+        fontSize = 24.sp,
         //color = Color.letra
     )
 }
@@ -161,11 +161,10 @@ fun ColorHeces(){
             }
         }
         //Aqui va la otra lista 2
-        Text("______________________________________________",
-            textAlign = TextAlign.Center,
+        Divider(color = Color.Black,
+            thickness = 1.dp,
             modifier = Modifier.fillMaxWidth()
-                .fillMaxHeight()
-                .padding(start = 5.dp, end = 5.dp)
+                .padding(15.dp)
         )
         Text(
             "Consistencia de las heces fecales",
@@ -215,14 +214,6 @@ fun BotonGuardar(){
             Text(text = "Guardar")
         }
 
-    }
-}
-
-//No se esta usando
-@Composable
-fun Separador(){
-    Column(){
-        Text("-------------------------------------")
     }
 }
 
