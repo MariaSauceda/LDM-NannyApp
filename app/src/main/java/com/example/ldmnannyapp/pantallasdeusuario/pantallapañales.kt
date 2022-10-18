@@ -7,8 +7,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +20,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -50,7 +53,10 @@ class Formulario : ComponentActivity() {
 
 @Composable
 fun vistaCambioPanal() {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    val scrollState = rememberScrollState()//scroll en toda la pantalla
+    Column(horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.verticalScroll(scrollState),//scroll en la pantalla
+    ) {
         topBar()
         Spacer(Modifier.padding(5.dp))
         title()
@@ -58,6 +64,8 @@ fun vistaCambioPanal() {
         title2()
         Spacer(Modifier.padding(5.dp))
         ColorHeces()
+        Spacer(Modifier.padding(5.dp))
+
     }
 
 }
@@ -95,7 +103,6 @@ fun title(modifier: Modifier = Modifier)
 
                 )
         }
-
     }
 }
 
@@ -111,76 +118,83 @@ fun title2(){
 
 @Composable
 fun ColorHeces(){
-    val radioOptions = listOf("DSA", "Java", "C++")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
+    val radioOptions = listOf("Negro-Verdoso", "Cafe-Verdoso", "Amarillo mostaza", "Verde-Brillante", "Blanco",
+    "Cafe-Claro", "Rojo-Rosaceo", "Cafe", "Verde-Oscuro", "Negro")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+    //Otra lista
+    val radioOptions2 = listOf("Pegajoso", "Grueso","Seco","Blanda","Granuloso","Acuoso","Con manchas rojas")
+    val (selectedOption2, onOptionSelected2) = remember { mutableStateOf(radioOptions2[0]) }
     Column(
-        // we are using column to align our
-        // imageview to center of the screen.
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-
-        // below line is used for
-        // specifying vertical arrangement.
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
-
-        // below line is used for
-        // specifying horizontal arrangement.
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // we are displaying all our
-        // radio buttons in column.
+        Text(
+            "Color de las heces fecales",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center,
+        )
         Column {
-            // below line is use to set data to
-            // each radio button in columns.
             radioOptions.forEach { text ->
                 Row(
                     Modifier
-                        // using modifier to add max
-                        // width to our radio button.
                         .fillMaxWidth()
-                        // below method is use to add
-                        // selectable to our radio button.
                         .selectable(
-                            // this method is called when
-                            // radio button is selected.
                             selected = (text == selectedOption),
-                            // below method is called on
-                            // clicking of radio button.
                             onClick = { onOptionSelected(text) }
                         )
-                        // below line is use to add
-                        // padding to radio button.
-                        .padding(horizontal = 16.dp)
+                    //.padding(horizontal = 16.dp)//16
                 ) {
-                    // below line is use to get context.
-                    val context = ContextAmbient.current
-
-                    // below line is use to
-                    // generate radio button
+                    val context = LocalContext.current
                     RadioButton(
-                        // inside this method we are
-                        // adding selected with a option.
-                        selected = (text == selectedOption),modifier = Modifier.padding(all = Dp(value = 8F)),
+                        selected = (text == selectedOption), //modifier = Modifier.padding(all = Dp(value = 8F))
                         onClick = {
-                            // inside on click method we are setting a
-                            // selected option of our radio buttons.
                             onOptionSelected(text)
-
-                            // after clicking a radio button
-                            // we are displaying a toast message.
                             Toast.makeText(context, text, Toast.LENGTH_LONG).show()
                         }
                     )
-                    // below line is use to add
-                    // text to our radio buttons.
                     Text(
                         text = text,
-                        modifier = Modifier.padding(start = 16.dp)
+                        modifier = Modifier.padding(start = 8.dp)//16
+                    )
+                }
+            }
+        }
+        //Aqui va la otra lista 2
+        Text(
+            "Color de las heces fecales",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center,
+        )
+        Column {
+            radioOptions2.forEach { text ->
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .selectable(
+                            selected = (text == selectedOption2),
+                            onClick = { onOptionSelected2(text) }
+                        )
+                    //.padding(horizontal = 16.dp)//16
+                ) {
+                    val context = LocalContext.current
+                    RadioButton(
+                        selected = (text == selectedOption2), //modifier = Modifier.padding(all = Dp(value = 8F))
+                        onClick = {
+                            onOptionSelected2(text)
+                            Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                    Text(
+                        text = text,
+                        modifier = Modifier.padding(start = 8.dp)//16
                     )
                 }
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
