@@ -12,9 +12,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -62,6 +60,8 @@ fun vistaCambioPanal() {
         title()
         Spacer(Modifier.padding(5.dp))
         title2()
+        Spacer(Modifier.padding(5.dp))
+        PipiPopo()
         Spacer(Modifier.padding(5.dp))
         ColorHeces()
         Spacer(Modifier.padding(5.dp))
@@ -116,6 +116,56 @@ fun title2(){
 }
 
 @Composable
+fun PipiPopo()
+{
+    val Opciones = listOf("Pipi", "Popo", "Ambos")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(Opciones[0]) }
+    Column{
+        Text(
+            "Color de las heces fecales",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly, //espaciado uniformemente
+        verticalAlignment = Alignment.CenterVertically,
+        //verticalArrangement = Arrangement.Center,
+        //horizontalAlignment = Alignment.CenterHorizontally,
+    )
+    {
+        Opciones.forEach{ text ->
+        Row (
+            modifier = Modifier
+
+                //.fillMaxWidth()
+                .selectable(
+                    selected = (text == selectedOption),
+                    onClick = { onOptionSelected(text) }
+                )
+        ){
+                val context = LocalContext.current
+                RadioButton(
+                    selected = (text == selectedOption), //modifier = Modifier.padding(all = Dp(value = 8F))
+                    onClick = {
+                        onOptionSelected(text)
+                        Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+                    }
+                        )
+
+                        Text(
+                            text = text,
+                            modifier = Modifier.padding(start = 8.dp)//16
+                        )
+                    }
+                }
+        }
+    }
+
+
+@Composable
 fun ColorHeces(){
     val radioOptions = listOf("Negro-Verdoso", "Cafe-Verdoso", "Amarillo mostaza", "Verde-Brillante", "Blanco",
     "Cafe-Claro", "Rojo-Rosaceo", "Cafe", "Verde-Oscuro", "Negro")
@@ -163,7 +213,8 @@ fun ColorHeces(){
         //Aqui va la otra lista 2
         Divider(color = Color.Black,
             thickness = 1.dp,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(15.dp)
         )
         Text(
@@ -204,7 +255,9 @@ fun ColorHeces(){
 @Composable
 fun BotonGuardar(){
     Row(horizontalArrangement = Arrangement.End,
-        modifier = Modifier.fillMaxWidth().fillMaxHeight()
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
     //.padding(end = 15.dp, top = 5.dp, bottom = 5.dp, start = 15.dp)
     ){
         Button(
