@@ -47,30 +47,21 @@ class Alimentos : ComponentActivity() {
 
 @Composable
 fun vistaAlimentos() {
-    val scaffoldState = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
-    Scaffold (
-        scaffoldState = scaffoldState,
-        topBar = { topBarAlimentos(scope, scaffoldState)},
-        drawerContent = {DrawerAlimentos()}
-    )
-    {
-        Column(Modifier.width(600.dp)) {
+        Column(Modifier.width(600.dp),
+        horizontalAlignment = Alignment.CenterHorizontally) {
+            topBarAlimentos()
             Spacer(Modifier.height(25.dp))
             titleAlimentos()
             Spacer(Modifier.height(15.dp))
             regAlimentos()
             Spacer(Modifier.height(30.dp))
             estAlimentos()
-        }
+            bottomBarAlimentos()
     }
 }
 
 @Composable
-fun topBarAlimentos(
-    scope: CoroutineScope,
-    scaffoldState: ScaffoldState
-) {
+fun topBarAlimentos( ){
     TopAppBar(
         title = {
             Text(
@@ -83,36 +74,14 @@ fun topBarAlimentos(
                 modifier = Modifier
                     .fillMaxWidth()
             )
-        },
-        navigationIcon = {
-            IconButton(onClick = {
-                scope.launch {
-                    scaffoldState.drawerState.open()
-                }
-            }) {
-                Icon(imageVector = Icons.Filled.Menu,
-                contentDescription = "Icono de menú")
-            }
         }
     )
 }
 
 @Composable
-fun DrawerAlimentos(){
-    val menu_items = listOf(
-        "Alimentos",
-        "Cambio de pañal",
-        "Siestas",
-        "Otros"
-    )
-    Column(){
-        menu_items.forEach{item ->
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(item,
-                modifier = Modifier
-                    .fillMaxWidth())
-            }
-        }
+fun bottomBarAlimentos(){
+    BottomAppBar() {
+
     }
 }
 
