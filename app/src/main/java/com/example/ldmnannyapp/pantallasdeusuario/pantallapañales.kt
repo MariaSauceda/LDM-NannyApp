@@ -15,9 +15,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -31,6 +33,7 @@ import com.example.ldmnannyapp.R
 import com.example.ldmnannyapp.R.drawable.pa_albebe
 import com.example.ldmnannyapp.ui.theme.LDMNannyAppTheme
 import com.example.ldmnannyapp.ui.theme.amarillito
+import com.example.ldmnannyapp.ui.theme.letra
 
 class Formulario : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +102,7 @@ fun title(modifier: Modifier = Modifier)
             Text(text = "CAMBIO PAÑAL",
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Medium,
+                color = letra,
                 modifier = modifier.paddingFromBaseline(30.dp),
             )
         }
@@ -116,13 +120,12 @@ fun title2(){
 }
 
 @Composable
-fun PipiPopo()
-{
+fun PipiPopo(){
     val Opciones = listOf("Pipi", "Popo", "Ambos")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(Opciones[0]) }
     Column{
         Text(
-            "Color de las heces fecales",
+            "¿A que necesidad se debio el cambio de pañal?",
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(8.dp)
@@ -137,15 +140,16 @@ fun PipiPopo()
     )
     {
         Opciones.forEach{ text ->
-        Row (
-            modifier = Modifier
+            Row (
+                modifier = Modifier
 
-                //.fillMaxWidth()
-                .selectable(
-                    selected = (text == selectedOption),
-                    onClick = { onOptionSelected(text) }
-                )
-        ){
+                    //.fillMaxWidth()
+                    .selectable(
+                        selected = (text == selectedOption),
+                        onClick = { onOptionSelected(text) }
+                    ),
+                verticalAlignment = CenterVertically
+            ){
                 val context = LocalContext.current
                 RadioButton(
                     selected = (text == selectedOption), //modifier = Modifier.padding(all = Dp(value = 8F))
@@ -153,16 +157,24 @@ fun PipiPopo()
                         onOptionSelected(text)
                         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
                     }
-                        )
+                )
+                Text(
+                    text = text,
+                    modifier = Modifier.padding(start = 5.dp),//16
 
-                        Text(
-                            text = text,
-                            modifier = Modifier.padding(start = 8.dp)//16
-                        )
-                    }
-                }
+                )
+            }
         }
     }
+    Column{
+        Divider(color = Color.Black,
+            thickness = 1.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+        )
+    }
+}
 
 
 @Composable
@@ -192,8 +204,8 @@ fun ColorHeces(){
                         .selectable(
                             selected = (text == selectedOption),
                             onClick = { onOptionSelected(text) }
-                        )
-                    //.padding(horizontal = 16.dp)//16
+                        ),
+                    verticalAlignment = CenterVertically
                 ) {
                     val context = LocalContext.current
                     RadioButton(
@@ -205,7 +217,7 @@ fun ColorHeces(){
                     )
                     Text(
                         text = text,
-                        modifier = Modifier.padding(start = 8.dp)//16
+                        modifier = Modifier.padding(start = 5.dp)//16
                     )
                 }
             }
@@ -231,8 +243,9 @@ fun ColorHeces(){
                         .selectable(
                             selected = (text == selectedOption2),
                             onClick = { onOptionSelected2(text) }
-                        )
+                        ),
                     //.padding(horizontal = 16.dp)//16
+                    verticalAlignment = CenterVertically
                 ) {
                     val context = LocalContext.current
                     RadioButton(
@@ -244,7 +257,7 @@ fun ColorHeces(){
                     )
                     Text(
                         text = text,
-                        modifier = Modifier.padding(start = 8.dp)//16
+                        modifier = Modifier.padding(start = 5.dp)//16
                     )
                 }
             }
