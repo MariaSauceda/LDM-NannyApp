@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -31,9 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ldmnannyapp.R
 import com.example.ldmnannyapp.R.drawable.pa_albebe
-import com.example.ldmnannyapp.ui.theme.LDMNannyAppTheme
-import com.example.ldmnannyapp.ui.theme.amarillito
-import com.example.ldmnannyapp.ui.theme.letra
+import com.example.ldmnannyapp.ui.theme.*
 
 class Formulario : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +69,6 @@ fun vistaCambioPanal() {
         Spacer(Modifier.padding(5.dp))
         BotonGuardar()
     }
-
 }
 
 @Composable
@@ -93,11 +91,10 @@ fun title(modifier: Modifier = Modifier)
     {
         Row(horizontalArrangement = Arrangement.Center){
             Image(painter = painterResource(id = pa_albebe),
-            //val image1 = painterResource(id = R.drawable.),
                 contentDescription = null,
                 modifier = Modifier
                     .paddingFromBaseline(7.dp, 0.dp)
-
+                    .padding(end = 15.dp)
                     .size(35.dp))
             Text(text = "CAMBIO PAÑAL",
                 fontSize = 17.sp,
@@ -115,7 +112,7 @@ fun title2(){
         text = "Detalles importantes",
         textAlign = TextAlign.Center,
         fontSize = 24.sp,
-        //color = Color.letra
+        color = letra
     )
 }
 
@@ -135,15 +132,11 @@ fun PipiPopo(){
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly, //espaciado uniformemente
         verticalAlignment = Alignment.CenterVertically,
-        //verticalArrangement = Arrangement.Center,
-        //horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
         Opciones.forEach{ text ->
             Row (
                 modifier = Modifier
-
-                    //.fillMaxWidth()
                     .selectable(
                         selected = (text == selectedOption),
                         onClick = { onOptionSelected(text) }
@@ -152,11 +145,14 @@ fun PipiPopo(){
             ){
                 val context = LocalContext.current
                 RadioButton(
-                    selected = (text == selectedOption), //modifier = Modifier.padding(all = Dp(value = 8F))
+                    selected = (text == selectedOption),
                     onClick = {
                         onOptionSelected(text)
                         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
-                    }
+                    },
+                    colors = RadioButtonDefaults.colors(selectedColor = rojito,
+                        unselectedColor = letra,
+                    )
                 )
                 Text(
                     text = text,
@@ -209,11 +205,14 @@ fun ColorHeces(){
                 ) {
                     val context = LocalContext.current
                     RadioButton(
-                        selected = (text == selectedOption), //modifier = Modifier.padding(all = Dp(value = 8F))
+                        selected = (text == selectedOption),
                         onClick = {
                             onOptionSelected(text)
                             Toast.makeText(context, text, Toast.LENGTH_LONG).show()
-                        }
+                        },
+                        colors = RadioButtonDefaults.colors(selectedColor = rojito,
+                        unselectedColor = letra,
+                        )
                     )
                     Text(
                         text = text,
@@ -249,15 +248,18 @@ fun ColorHeces(){
                 ) {
                     val context = LocalContext.current
                     RadioButton(
-                        selected = (text == selectedOption2), //modifier = Modifier.padding(all = Dp(value = 8F))
+                        selected = (text == selectedOption2),
                         onClick = {
                             onOptionSelected2(text)
                             Toast.makeText(context, text, Toast.LENGTH_LONG).show()
-                        }
+                        },
+                        colors = RadioButtonDefaults.colors(selectedColor = rojito,
+                            unselectedColor = letra,
+                        )
                     )
                     Text(
                         text = text,
-                        modifier = Modifier.padding(start = 5.dp)//16
+                        modifier = Modifier.padding(start = 5.dp)
                     )
                 }
             }
@@ -271,13 +273,14 @@ fun BotonGuardar(){
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-    //.padding(end = 15.dp, top = 5.dp, bottom = 5.dp, start = 15.dp)
     ){
         Button(
             modifier = Modifier.padding(end = 35.dp, top = 10.dp, bottom = 10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Magenta),
+            colors = ButtonDefaults.buttonColors(backgroundColor = fondo),
             onClick = { /*TODO*/ }) {
-            Text(text = "Guardar")
+            Text(text = "Guardar",
+                color = Color.Black
+            )
         }
 
     }
